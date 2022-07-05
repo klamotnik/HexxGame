@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Hexx" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DELL-LAPTOP\SQLEXPRESS;Initial Catalog=Hexx;Integrated Security=True" SettingsObjectName="Hexx.Server.Properties.Settings" SettingsPropertyName="HexxConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="Mail" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="User_UsersOnTable" Member="UserOnTables" ThisKey="ID" OtherKey="User" Type="UserOnTable" />
+      <Association Name="User_Table" Member="Tables" ThisKey="ID" OtherKey="Seat1" Type="Table" />
+      <Association Name="User_Table1" Member="Tables1" ThisKey="ID" OtherKey="Seat2" Type="Table" />
+      <Association Name="User_Game" Member="Games" ThisKey="ID" OtherKey="Player1" Type="Game" />
+      <Association Name="User_Game1" Member="Games1" ThisKey="ID" OtherKey="Player2" Type="Game" />
+      <Association Name="User_GameMove" Member="GameMoves" ThisKey="ID" OtherKey="Player" Type="GameMove" />
+      <Association Name="User_UserData" Member="UserData" ThisKey="ID" OtherKey="ID" Type="UserData" Cardinality="One" />
+      <Association Name="User_UserToken" Member="UserToken" ThisKey="ID" OtherKey="ID" Type="UserToken" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsersOnTable" Member="UserOnTables">
+    <Type Name="UserOnTable">
+      <Column Name="[Table]" Member="Table" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="User_UsersOnTable" Member="User1" ThisKey="User" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Table_UsersOnTable" Member="Table1" ThisKey="Table" OtherKey="Number" Type="Table" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tables" Member="Tables">
+    <Type Name="Table">
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GameID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Seat1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Seat2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BoardSize" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeForPlayer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Table_UsersOnTable" Member="UserOnTables" ThisKey="Number" OtherKey="Table" Type="UserOnTable" />
+      <Association Name="User_Table" Member="User" ThisKey="Seat1" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Table1" Member="User1" ThisKey="Seat2" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Games" Member="Games">
+    <Type Name="Game">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Player1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Player2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ongoing" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="BoardSize" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeForPlayer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_GameMove" Member="GameMoves" ThisKey="ID" OtherKey="GameID" Type="GameMove" />
+      <Association Name="User_Game" Member="User" ThisKey="Player1" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Game1" Member="User1" ThisKey="Player2" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GameMoves" Member="GameMoves">
+    <Type Name="GameMove">
+      <Column Name="GameID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Player" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FieldFrom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FieldTo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_GameMove" Member="Game" ThisKey="GameID" OtherKey="ID" Type="Game" IsForeignKey="true" />
+      <Association Name="User_GameMove" Member="User" ThisKey="Player" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserData" Member="UserDatas">
+    <Type Name="UserData">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Rank" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserData" Member="User" ThisKey="ID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTokens" Member="UserTokens">
+    <Type Name="UserToken">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Token" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientGuid" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserToken" Member="User" ThisKey="ID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

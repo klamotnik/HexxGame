@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD7EDF74-CFAB-4F87-8795-11FCC9333FD2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Hexx</RootNamespace>
+    <AssemblyName>Hexx</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Hexx.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Animations\BackgroundAnimation.cs" />
+    <Compile Include="Components\Animations\Intro.cs" />
+    <Compile Include="Components\Background.cs" />
+    <Compile Include="Components\Board.cs" />
+    <Compile Include="Components\Levels\GameTable.cs" />
+    <Compile Include="Components\Logo.cs" />
+    <Compile Include="Components\GameInfoBar.cs" />
+    <Compile Include="Components\Panels\RegisterForm.cs" />
+    <Compile Include="Components\RoomLoginBar.cs" />
+    <Compile Include="Components\Forms\PlayersListRow.cs" />
+    <Compile Include="Components\Forms\TablesListRow.cs" />
+    <Compile Include="Components\Levels\Room.cs" />
+    <Compile Include="Components\Levels\MainMenu.cs" />
+    <Compile Include="Components\Panels\LoginForm.cs" />
+    <Compile Include="Components\Tile.cs" />
+    <Compile Include="Connection\ConnectionBuffer.cs" />
+    <Compile Include="Connection\ConnectionManager.cs" />
+    <Compile Include="Connection\Processors\EnterTableResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\CreateTableResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\LeaveSeatResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\TakeSeatResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\GetRoomInfoResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\RegisterResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\LogoutResponseProcessor.cs" />
+    <Compile Include="Connection\Processors\LoginResponseProcessor.cs" />
+    <Compile Include="Connection\ResponseProcessor.cs" />
+    <Compile Include="Connection\IncomingMessageManager.cs" />
+    <Compile Include="Connection\Threads\ResponseListener.cs" />
+    <Compile Include="Engine\SEngine.cs" />
+    <Compile Include="Engine\EventManager.cs" />
+    <Compile Include="Engine\FontLibrary.cs" />
+    <Compile Include="Engine\MessageBoxService.cs" />
+    <Compile Include="Engine\Types\SingletonAnimation.cs" />
+    <Compile Include="Engine\Types\Forms\Button.cs" />
+    <Compile Include="Engine\Types\Actors\MessageBox.cs" />
+    <Compile Include="Engine\Types\Forms\Label.cs" />
+    <Compile Include="Engine\Types\Animation.cs" />
+    <Compile Include="Engine\Types\Color.cs" />
+    <Compile Include="Engine\Types\Forms\Form.cs" />
+    <Compile Include="Engine\Types\Forms\FormControl.cs" />
+    <Compile Include="Engine\Types\Forms\InputField.cs" />
+    <Compile Include="Engine\Types\Forms\List.cs" />
+    <Compile Include="Engine\Types\Forms\ListRow.cs" />
+    <Compile Include="Engine\Types\Interfaces\IActivatable.cs" />
+    <Compile Include="Engine\Types\Interfaces\IInteractable.cs" />
+    <Compile Include="Engine\Types\Interfaces\IInvokable.cs" />
+    <Compile Include="Engine\Types\Interfaces\IRenderable.cs" />
+    <Compile Include="Engine\Types\Interfaces\ITickable.cs" />
+    <Compile Include="Engine\LevelManager.cs" />
+    <Compile Include="Engine\TextRenderer.cs" />
+    <Compile Include="Engine\Ticker.cs" />
+    <Compile Include="Engine\Types\Actor.cs" />
+    <Compile Include="Engine\Types\Level.cs" />
+    <Compile Include="Engine\Types\Actors\MenuContainer.cs" />
+    <Compile Include="Engine\Types\Actors\MenuElement.cs" />
+    <Compile Include="Engine\Types\Actors\Panel.cs" />
+    <Compile Include="Connection\Login.cs" />
+    <Compile Include="Engine\Types\TextProcessor.cs" />
+    <Compile Include="Engine\Types\Viewport.cs" />
+    <Compile Include="Engine\Types\Window.cs" />
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSSDL\CSSDL.csproj">
+      <Project>{d5430a04-1bf5-4bc2-8114-b9afa18ac2e3}</Project>
+      <Name>CSSDL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hexx.DTO\Hexx.DTO.csproj">
+      <Project>{8fb8e33c-6f99-41df-90d1-681301b3da07}</Project>
+      <Name>Hexx.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hexx.Types\Hexx.Types.csproj">
+      <Project>{36054b52-175d-415a-850b-be23d784a0fc}</Project>
+      <Name>Hexx.Types</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ContentWithTargetPath Include="Lib\libfreetype-6.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="Lib\libpng16-16.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="Lib\SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="Lib\SDL2_image.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="Lib\SDL2_ttf.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="Lib\zlib1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Hexx.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+  </Target>
+</Project>
